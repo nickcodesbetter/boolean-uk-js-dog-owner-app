@@ -21,27 +21,86 @@ console.log(data);
 // - Remember you can add event listeners to any element on the page
 
 
-function statsFinder(stats) {
-    const cardStats = document.createElement("ul");
-    
-  
-    for (let i = 0; i < stats.length; i++) {
-      const statName = stats[i].stat.name;
+const dogsListEl = document.querySelector(".dogs-list");
 
+const mainSectionEl = document.querySelector(".main__dog-section");
+
+
+// dog list header
+
+function createDogsList(dogs) {
+    
+console.log("Inside createDogsList: ", dogs);
+
+    for (let i = 0; i < dogs.length; i++) {
+
+      const dog = dogs[i];
+      const name = dog.name;
+  
+      const listItemEl = document.createElement("li");
+
+
+      listItemEl.className = "dogs-list__button";
+  
+      listItemEl.innerText = name;
+      listItemEl.addEventListener("click", () => {
+        console.log("OnClick inside createDogsList: ", dog);
+  
+        createMainCard(dog);
+      });
+  
+      console.log(listItemEl);
+  
+      dogsListEl.append(listItemEl);
     }
-    // return cardStats;
-  }
+}
+        createDogsList(data);
 
 
-  function renderDogCards(data) {
-    for (let i = 0; i < data.length; i++) {
-   
-        const listOfDogs = data[i];
+
+
+
+        // Main card - name & image
+
+function createMainCard(dog) {
+            
+console.log("Inside createMainCard: ", dog);
+          
+mainSectionEl.innerHTML = "";
+
+const headingEl = document.createElement("h2");
+
+headingEl.innerText = dog.name;
+          
+mainSectionEl.append(headingEl);
+          
+// ...
+}
+
+
+
+
+// function statsFinder(stats) {
+//     const cardStats = document.createElement("ul");
     
-    cardsElem.append(createDogCard(listOfDogs));
-
-}
   
-}
-  renderDogsCards(data);
+//     for (let i = 0; i < stats.length; i++) {
+//       const statName = stats[i].stat.name;
+
+//     }
+//     // return cardStats;
+//   }
+
+
+//   function renderDogCards(data) {
+//     for (let i = 0; i < data.length; i++) {
+   
+//         const listOfDogs = data[i];
+    
+//     cardsElem.append(createDogCard(listOfDogs));
+
+// }
+  
+// }
+//   renderDogsCards(data);
 
